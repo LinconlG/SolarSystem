@@ -1,0 +1,19 @@
+<div class="planet-section">
+  @for (planet of planets; let i = $index; track planet) {
+    <div
+      class="planet-container"
+      #sectionRef
+      [class.active]="activeIndex === i"
+    >
+      <img
+        [src]="planet.image"
+        class="planet-img"
+        [class.visible]="activeIndex === i"
+      >
+      <app-planet-card
+        [planet]="planet"
+        [class.visible]="activeIndex === i"
+      ></app-planet-card>
+    </div>
+  }
+</div>
