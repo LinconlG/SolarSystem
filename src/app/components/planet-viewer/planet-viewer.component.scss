@@ -1,43 +1,51 @@
+/* Container geral que agrupa todas as seções de planetas, coluna vertical */
 .planet-section {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 80vh; /* espaçamento grande entre planetas para permitir scroll */
+  padding: 2rem 0;
 }
 
+/* Cada seção que mostra um planeta + descrição */
 .planet-container {
-  height: 100vh;
+  height: 100vh;           /* ocupa altura total da viewport para facilitar scroll */
   display: flex;
+  justify-content: center; /* centraliza horizontalmente planeta + texto juntos */
   align-items: center;
-  justify-content: center;
-  gap: 5rem;
+  gap: 3rem;               /* espaço entre a imagem e o texto */
   opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  transform: scale(0.5) translateY(100px);
+  pointer-events: none;    /* bloqueia interação quando invisível */
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: scale(0.6) translateY(50px); /* escala e baixa para animação de entrada */
 }
 
+/* Quando ativo, aparece e fica na escala normal */
 .planet-container.active {
   opacity: 1;
   pointer-events: auto;
   transform: scale(1) translateY(0);
 }
 
-.planet-img,
+/* Imagem do planeta */
+.planet-img {
+  width: 300px;
+  height: auto;
+  transition: transform 0.5s ease;
+  /* Se quiser pode animar algo aqui no hover, por exemplo */
+}
+
+/* Componente de texto do planeta */
 app-planet-card {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease;
-}
-
-.planet-img.visible,
-app-planet-card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-:host {
-  display: block;
-  color: white;
   max-width: 400px;
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateX(30px);
+}
+
+/* Quando ativo, o texto aparece */
+.planet-container.active app-planet-card {
+  opacity: 1;
+  transform: translateX(0);
 }
